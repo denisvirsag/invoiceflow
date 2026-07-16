@@ -17,7 +17,10 @@ export async function loginAction(prevState: any, formData: FormData) {
       password,
       redirectTo: "/dashboard",
     });
-  } catch (error) {
+  } catch (error: any) {
+    if (error.message === "NEXT_REDIRECT") {
+      throw error;
+    }
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
@@ -26,6 +29,7 @@ export async function loginAction(prevState: any, formData: FormData) {
           return { error: "Errore durante il login." };
       }
     }
-    throw error; // must rethrow so Next.js redirect works
+    console.error("Login Error:", error);
+    return { error: "Credenziali non valide o errore di connessione." };
   }
 }
