@@ -31,6 +31,37 @@ export async function downloadInvoicePDF(invoiceNumber: string) {
           bodyEl.style.background = "#ffffff";
         }
 
+        // Hide sidebar, header and page controls that might stretch the cloned canvas
+        const sidebar = clonedDoc.querySelector(".dashboard-sidebar");
+        if (sidebar) (sidebar as HTMLElement).style.display = "none";
+
+        const pageHeader = clonedDoc.querySelector(".page-header");
+        if (pageHeader) (pageHeader as HTMLElement).style.display = "none";
+
+        const actionsWrapper = clonedDoc.querySelector(".page-header + div"); // Action buttons if any
+        if (actionsWrapper && !actionsWrapper.classList.contains("invoice-print-container")) {
+          (actionsWrapper as HTMLElement).style.display = "none";
+        }
+
+        // Remove margins, paddings and display flex from layout main elements in clone
+        const dbMain = clonedDoc.querySelector(".dashboard-main") as HTMLElement;
+        if (dbMain) {
+          dbMain.style.margin = "0";
+          dbMain.style.padding = "0";
+          dbMain.style.display = "block";
+          dbMain.style.minHeight = "auto";
+          dbMain.style.height = "auto";
+        }
+
+        const dbContent = clonedDoc.querySelector(".dashboard-content") as HTMLElement;
+        if (dbContent) {
+          dbContent.style.margin = "0";
+          dbContent.style.padding = "0";
+          dbContent.style.display = "block";
+          dbContent.style.minHeight = "auto";
+          dbContent.style.height = "auto";
+        }
+
         const clonedEl = clonedDoc.querySelector(".invoice-print-container") as HTMLElement;
         if (clonedEl) {
           // Remove animations that cause blank captures
