@@ -151,7 +151,7 @@ export default function LandingPage() {
           <Link href="#pricing" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Prezzi</Link>
           <Link href="#faq" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>FAQ</Link>
           <Link href="/login" className="btn btn-outline btn-sm" id="nav-login-btn">Accedi</Link>
-          <Link href="/register" className="btn btn-primary btn-sm" id="nav-register-btn">Inizia gratis</Link>
+          <Link href="/register" className="btn btn-accent btn-sm" id="nav-register-btn">Inizia gratis</Link>
         </div>
       </nav>
 
@@ -163,7 +163,7 @@ export default function LandingPage() {
         <div style={{
           position: "absolute", top: "50px", left: "50%", transform: "translateX(-50%)",
           width: "900px", height: "600px", pointerEvents: "none", zIndex: 0,
-          background: "radial-gradient(ellipse, rgb(37 99 235 / 0.05) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgb(5 150 105 / 0.05) 0%, transparent 70%)",
         }} aria-hidden="true" />
 
         <div style={{ position: "relative", zIndex: 1, padding: "0 var(--space-6)", maxWidth: "950px", margin: "0 auto", textAlign: "center" }}>
@@ -177,7 +177,7 @@ export default function LandingPage() {
           <h1 id="hero-heading" style={{
             fontSize: "clamp(2rem, 5.5vw, 3.5rem)", fontWeight: 900, letterSpacing: "-0.05em", lineHeight: 1.15, marginBottom: "var(--space-6)", color: "var(--color-primary)"
           }}>
-            Dalla voce alla fattura,<br /><span style={{ color: "var(--color-secondary)" }}>in due minuti netti.</span>
+            Dalla voce alla fattura,<br /><span style={{ color: "var(--color-accent)" }}>in due minuti netti.</span>
           </h1>
 
           <p style={{
@@ -187,7 +187,7 @@ export default function LandingPage() {
           </p>
 
           <div className="landing-hero-cta" style={{ display: "flex", gap: "var(--space-4)", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/register" className="btn btn-primary btn-lg" id="hero-cta-btn">
+            <Link href="/register" className="btn btn-accent btn-lg" id="hero-cta-btn">
               Inizia gratis — nessuna carta
             </Link>
             <form action={startDemoAction} style={{ display: "inline-block" }}>
@@ -209,7 +209,7 @@ export default function LandingPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "var(--space-4)" }}>
             {trustItems.map((item, index) => (
               <div key={index} style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", justifyContent: "center", color: "var(--color-primary)" }}>
-                <span style={{ color: "var(--color-secondary)", display: "flex", alignItems: "center" }}>{item.icon}</span>
+                <span style={{ color: "var(--color-accent)", display: "flex", alignItems: "center" }}>{item.icon}</span>
                 <span style={{ fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-foreground)" }}>{item.text}</span>
               </div>
             ))}
@@ -221,7 +221,7 @@ export default function LandingPage() {
       <section id="how-it-works" aria-labelledby="how-it-works-heading" style={{ padding: "var(--space-20) var(--space-6)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "var(--space-12)" }}>
-            <span style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
+            <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
               Tre passaggi, non trenta
             </span>
             <h2 id="how-it-works-heading" style={{ fontSize: "var(--text-3xl)", fontWeight: 800, color: "var(--color-primary)" }}>
@@ -231,7 +231,7 @@ export default function LandingPage() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "var(--space-6)" }}>
             <div className="card" style={{ padding: "var(--space-6)", display: "flex", flexDirection: "column", border: "1px solid var(--color-border)" }}>
-              <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-secondary)", marginBottom: "var(--space-3)" }}>
+              <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-accent)", marginBottom: "var(--space-3)" }}>
                 01 — Intestazione
               </div>
               <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-2)" }}>Cliente e dati fiscali</h3>
@@ -241,7 +241,7 @@ export default function LandingPage() {
             </div>
 
             <div className="card" style={{ padding: "var(--space-6)", display: "flex", flexDirection: "column", border: "1px solid var(--color-border)" }}>
-              <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-secondary)", marginBottom: "var(--space-3)" }}>
+              <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-accent)", marginBottom: "var(--space-3)" }}>
                 02 — Voci e IVA
               </div>
               <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-2)" }}>Voci di spesa</h3>
@@ -251,7 +251,7 @@ export default function LandingPage() {
             </div>
 
             <div className="card" style={{ padding: "var(--space-6)", display: "flex", flexDirection: "column", border: "1px solid var(--color-border)" }}>
-              <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-secondary)", marginBottom: "var(--space-3)" }}>
+              <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-accent)", marginBottom: "var(--space-3)" }}>
                 03 — Anteprima e invio
               </div>
               <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-2)" }}>Controlla e invia</h3>
@@ -267,7 +267,7 @@ export default function LandingPage() {
       <section id="features" aria-labelledby="features-heading" style={{ padding: "var(--space-20) var(--space-6)", background: "var(--color-primary-light)" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "var(--space-16)" }}>
-            <span style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
+            <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
               Tutto quello che serve
             </span>
             <h2 id="features-heading" style={{ fontSize: "var(--text-3xl)", fontWeight: 800, color: "var(--color-primary)", marginBottom: "var(--space-3)" }}>
@@ -282,9 +282,9 @@ export default function LandingPage() {
             {features.map((f) => (
               <div key={f.title} className="card feature-card" style={{ padding: "var(--space-6)", border: "1px solid var(--color-border)" }}>
                 <div style={{
-                  width: 48, height: 48, background: "rgba(37, 99, 235, 0.1)",
+                  width: 48, height: 48, background: "rgba(5, 150, 105, 0.1)",
                   borderRadius: "var(--radius-lg)", display: "flex", alignItems: "center",
-                  justifyContent: "center", color: "var(--color-secondary)",
+                  justifyContent: "center", color: "var(--color-accent)",
                   marginBottom: "var(--space-4)",
                 }} aria-hidden="true">{f.icon}</div>
                 <h3 style={{ fontWeight: 700, fontSize: "var(--text-lg)", marginBottom: "var(--space-2)" }}>{f.title}</h3>
@@ -301,7 +301,7 @@ export default function LandingPage() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "var(--space-12)", alignItems: "center" }}>
             {/* Copy side */}
             <div>
-              <span style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
+              <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
                 Sotto controllo
               </span>
               <h2 id="dashboard-heading" style={{ fontSize: "var(--text-3xl)", fontWeight: 800, color: "var(--color-primary)", marginBottom: "var(--space-4)" }}>
@@ -366,15 +366,15 @@ export default function LandingPage() {
                 <div style={{ fontSize: "10px", fontWeight: 700, color: "var(--color-muted-foreground)", marginBottom: "var(--space-4)" }}>ANDAMENTO ULTIMI MESI</div>
                 <div style={{ height: "100px", display: "flex", alignItems: "flex-end", gap: "var(--space-3)" }}>
                   <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
-                    <div style={{ height: "40px", background: "linear-gradient(to top, var(--color-secondary), var(--color-info))", borderRadius: "2px 2px 0 0" }} />
+                    <div style={{ height: "40px", background: "linear-gradient(to top, var(--color-accent), var(--color-info))", borderRadius: "2px 2px 0 0" }} />
                     <div style={{ fontSize: "8px", textAlign: "center", color: "var(--color-muted-foreground)" }}>GEN</div>
                   </div>
                   <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
-                    <div style={{ height: "65px", background: "linear-gradient(to top, var(--color-secondary), var(--color-info))", borderRadius: "2px 2px 0 0" }} />
+                    <div style={{ height: "65px", background: "linear-gradient(to top, var(--color-accent), var(--color-info))", borderRadius: "2px 2px 0 0" }} />
                     <div style={{ fontSize: "8px", textAlign: "center", color: "var(--color-muted-foreground)" }}>FEB</div>
                   </div>
                   <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: "4px" }}>
-                    <div style={{ height: "90px", background: "linear-gradient(to top, var(--color-secondary), var(--color-info))", borderRadius: "2px 2px 0 0" }} />
+                    <div style={{ height: "90px", background: "linear-gradient(to top, var(--color-accent), var(--color-info))", borderRadius: "2px 2px 0 0" }} />
                     <div style={{ fontSize: "8px", textAlign: "center", color: "var(--color-muted-foreground)" }}>MAR</div>
                   </div>
                 </div>
@@ -388,7 +388,7 @@ export default function LandingPage() {
       <section id="pricing" aria-labelledby="pricing-heading" style={{ padding: "var(--space-20) var(--space-6)" }}>
         <div style={{ maxWidth: "1050px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "var(--space-16)" }}>
-            <span style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
+            <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
               Prezzi trasparenti
             </span>
             <h2 id="pricing-heading" style={{ fontSize: "var(--text-3xl)", fontWeight: 800, color: "var(--color-primary)", marginBottom: "var(--space-3)" }}>
@@ -447,12 +447,12 @@ export default function LandingPage() {
 
             {/* Pro */}
             <div className="card" style={{
-              display: "flex", flexDirection: "column", border: "2px solid var(--color-secondary)", padding: "var(--space-8)",
+              display: "flex", flexDirection: "column", border: "2px solid var(--color-accent)", padding: "var(--space-8)",
               transform: "scale(1.02)", boxShadow: "var(--shadow-xl)", position: "relative"
             }}>
               <div style={{
                 position: "absolute", top: -14, left: "50%", transform: "translateX(-50%)",
-                background: "var(--color-secondary)", color: "white", padding: "var(--space-1) var(--space-4)",
+                background: "var(--color-accent)", color: "white", padding: "var(--space-1) var(--space-4)",
                 borderRadius: "var(--radius-full)", fontSize: "var(--text-xs)", fontWeight: 700,
                 textTransform: "uppercase", letterSpacing: "0.08em",
               }}>
@@ -496,7 +496,7 @@ export default function LandingPage() {
                   Nessun watermark sul PDF
                 </li>
               </ul>
-              <Link href="/register?plan=pro" className="btn btn-primary" style={{ width: "100%", justifyContent: "center" }}>
+              <Link href="/register?plan=pro" className="btn btn-accent" style={{ width: "100%", justifyContent: "center" }}>
                 Prova Pro
               </Link>
             </div>
@@ -553,7 +553,7 @@ export default function LandingPage() {
       <section id="faq" aria-labelledby="faq-heading" style={{ padding: "var(--space-20) var(--space-6)", backgroundColor: "var(--color-primary-light)" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "var(--space-12)" }}>
-            <span style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
+            <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
               Domande frequenti
             </span>
             <h2 id="faq-heading" style={{ fontSize: "var(--text-3xl)", fontWeight: 800, color: "var(--color-primary)" }}>
@@ -579,11 +579,11 @@ export default function LandingPage() {
         <div style={{
           position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)",
           width: "800px", height: "400px", pointerEvents: "none", zIndex: 0,
-          background: "radial-gradient(ellipse, rgb(37 99 235 / 0.04) 0%, transparent 60%)",
+          background: "radial-gradient(ellipse, rgb(5 150 105 / 0.04) 0%, transparent 60%)",
         }} aria-hidden="true" />
 
         <div style={{ position: "relative", zIndex: 1, maxWidth: "700px", margin: "0 auto" }}>
-          <span style={{ color: "var(--color-secondary)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
+          <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
             Pronto quando lo sei tu
           </span>
           <h2 id="final-cta-heading" style={{ fontSize: "var(--text-4xl)", fontWeight: 900, letterSpacing: "-0.04em", color: "var(--color-primary)", marginBottom: "var(--space-4)", lineHeight: 1.2 }}>
@@ -592,7 +592,7 @@ export default function LandingPage() {
           <p style={{ color: "var(--color-muted-foreground)", fontSize: "var(--text-base)", marginBottom: "var(--space-8)", maxWidth: "550px", margin: "0 auto var(--space-8)" }}>
             Nessuna carta richiesta. Nessun contratto. Solo una fattura fatta bene.
           </p>
-          <Link href="/register" className="btn btn-primary btn-lg" style={{ display: "inline-flex", marginBottom: "var(--space-4)" }}>
+          <Link href="/register" className="btn btn-accent btn-lg" style={{ display: "inline-flex", marginBottom: "var(--space-4)" }}>
             Inizia gratis — nessuna carta
           </Link>
           <p style={{ fontSize: "var(--text-xs)", color: "var(--color-muted-foreground)" }}>
