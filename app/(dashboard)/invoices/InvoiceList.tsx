@@ -104,23 +104,33 @@ export default function InvoiceList({ invoices }: { invoices: any[] }) {
         });
 
         const imgWidth = 210; // A4 width in mm
+        const pageHeight = 297; // A4 height in mm
         const imgHeight = (canvas.height * imgWidth) / canvas.width;
         
+        let finalWidth = imgWidth;
+        let finalHeight = imgHeight;
+        let startX = 0;
+
+        // If the content is slightly larger than 1 page (up to 15% overflow), scale it down to fit exactly on 1 page
+        if (imgHeight > pageHeight && imgHeight <= pageHeight * 1.15) {
+          finalHeight = pageHeight;
+          finalWidth = (canvas.width * finalHeight) / canvas.height;
+          startX = (imgWidth - finalWidth) / 2; // Center horizontally
+        }
+
         const pdf = new jsPDF("p", "mm", "a4");
-        const pageHeight = 297; // A4 height in mm
-        
         let position = 0;
-        let heightLeft = imgHeight;
+        let heightLeft = finalHeight;
         
         // Handling multi-page PDF generation if needed
         const imgData = canvas.toDataURL("image/png");
-        pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight, undefined, "FAST");
+        pdf.addImage(imgData, "PNG", startX, position, finalWidth, finalHeight, undefined, "FAST");
         heightLeft -= pageHeight;
 
-        while (heightLeft >= 0) {
-          position = heightLeft - imgHeight;
+        while (heightLeft > 15) {
+          position = heightLeft - finalHeight;
           pdf.addPage();
-          pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight, undefined, "FAST");
+          pdf.addImage(imgData, "PNG", startX, position, finalWidth, finalHeight, undefined, "FAST");
           heightLeft -= pageHeight;
         }
 
@@ -171,7 +181,7 @@ export default function InvoiceList({ invoices }: { invoices: any[] }) {
             className="invoice-export-renderer"
             style={{
               width: "794px",
-              minHeight: "1123px",
+              minHeight: "auto",
               background: "#ffffff",
               padding: "40px",
               color: "#0F172A",
