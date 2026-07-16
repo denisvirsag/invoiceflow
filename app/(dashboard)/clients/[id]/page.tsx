@@ -28,7 +28,7 @@ export default async function ClientDetailPage({
   }
 
   // Calculate totals
-  const totalInvoiced = client.invoices.reduce((sum, inv) => sum + inv.total, 0);
+  const totalInvoiced = client.invoices.reduce((sum: number, inv) => sum + inv.total, 0);
 
   return (
     <>
