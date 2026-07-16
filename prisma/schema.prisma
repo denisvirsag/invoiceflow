@@ -1,0 +1,119 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  passwordHash  String?
+  image         String?
+
+  // Dati aziendali
+  companyName   String?
+  vatNumber     String?   // P.IVA
+  address       String?
+  city          String?
+  zip           String?
+  country       String?   @default("IT")
+  phone         String?
+  logoUrl       String?
+
+  // Relazioni
+  invoices      Invoice[]
+  clients       Client[]
+
+  // Stripe
+  stripeCustomerId     String?
+  stripePriceId        String?
+  stripeSubscriptionId String?
+  plan                 String    @default("free") // free | pro | business
+
+  // Timestamps
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Client {
+  id            String    @id @default(cuid())
+  name          String
+  email         String?
+  vatNumber     String?   // P.IVA
+  taxCode       String?   // Codice fiscale
+  address       String?
+  city          String?
+  zip           String?
+  country       String?   @default("IT")
+  phone         String?
+  notes         String?
+
+  // Relazioni
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invoices      Invoice[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Invoice {
+  id            String    @id @default(cuid())
+  number        String                        // es. "2026/001"
+  status        String    @default("draft")   // draft | sent | paid | overdue | cancelled
+
+  // Date
+  issueDate     DateTime
+  dueDate       DateTime
+  paidAt        DateTime?
+
+  // Totali
+  subtotal      Float     @default(0)
+  vatTotal      Float     @default(0)
+  total         Float     @default(0)
+
+  // Extra
+  notes         String?
+  currency      String    @default("EUR")
+
+  // Recurrent fields
+  isRecurring   Boolean   @default(false)
+  frequency     String?   // "weekly" | "monthly" | "yearly"
+
+  // Relazioni
+  userId        String
+  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  clientId      String
+  client        Client    @relation(fields: [clientId], references: [id])
+  lineItems     LineItem[]
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([userId])
+  @@index([clientId])
+  @@index([status])
+}
+
+model LineItem {
+  id            String    @id @default(cuid())
+  description   String
+  quantity      Float     @default(1)
+  unitPrice     Float
+  vatRate       Float     @default(22)  // % IVA (0, 4, 5, 10, 22)
+  total         Float                   // qty * price * (1 + vat/100)
+
+  // Posizione nell'ordine
+  position      Int       @default(0)
+
+  // Relazione
+  invoiceId     String
+  invoice       Invoice   @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+
+  @@index([invoiceId])
+}
