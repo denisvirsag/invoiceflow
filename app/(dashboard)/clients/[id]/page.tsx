@@ -2,7 +2,8 @@ import { prisma } from "@/lib/db";
 import { auth } from "@/lib/auth";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import ClientEditForm from "./ClientEditForm"; // We will create this as a Client Component
+import ClientEditForm from "./ClientEditForm";
+import type { Invoice } from "@prisma/client";
 
 export default async function ClientDetailPage({
   params,
@@ -64,7 +65,7 @@ export default async function ClientDetailPage({
                <p style={{ color: "var(--color-muted-foreground)", fontSize: "var(--text-sm)" }}>Nessuna fattura emessa.</p>
              ) : (
                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "var(--space-3)" }}>
-                 {client.invoices.map((inv) => (
+                 {client.invoices.map((inv: Invoice) => (
                    <li key={inv.id} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingBottom: "var(--space-3)", borderBottom: "1px solid var(--color-border)" }}>
                      <div>
                        <Link href={`/invoices/${inv.id}`} style={{ fontWeight: 600, color: "var(--color-primary)" }}>{inv.number}</Link>
