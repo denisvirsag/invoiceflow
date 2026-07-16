@@ -47,6 +47,25 @@ export default async function NewInvoicePage() {
   const session = await auth();
   if (!session?.user?.id) return redirect("/login");
 
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+  });
+
+  const isFreePlan = !user?.plan || user.plan === "free";
+  if (isFreePlan) {
+    const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+    const invoicesCount = await prisma.invoice.count({
+      where: {
+        userId: session.user.id,
+        createdAt: { gte: startOfMonth },
+      },
+    });
+
+    if (invoicesCount >= 5) {
+      return redirect("/settings/billing?limit_reached=true");
+    }
+  }
+
   const [clients, suggestedInvoiceNumber] = await Promise.all([
     prisma.client.findMany({
       where: { userId: session.user.id },

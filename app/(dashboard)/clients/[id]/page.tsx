@@ -28,6 +28,20 @@ export default async function ClientDetailPage({
     notFound();
   }
 
+  const user = await prisma.user.findUnique({
+    where: { id: session.user.id },
+  });
+
+  const isFreePlan = !user?.plan || user.plan === "free";
+  const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1);
+  const thisMonthInvoicesCount = await prisma.invoice.count({
+    where: {
+      userId: session.user.id,
+      createdAt: { gte: startOfMonth },
+    },
+  });
+  const isLimitReached = isFreePlan && thisMonthInvoicesCount >= 5;
+
   // Calculate totals
   const totalInvoiced = client.invoices.reduce((sum: number, inv: { total: number }) => sum + inv.total, 0);
 
@@ -78,7 +92,13 @@ export default async function ClientDetailPage({
                  ))}
                </ul>
              )}
-             <Link href="/invoices/new" className="btn btn-outline btn-sm" style={{ width: "100%", marginTop: "var(--space-4)" }}>Nuova fattura</Link>
+              {isLimitReached ? (
+                <Link href="/settings/billing" className="btn btn-outline btn-sm" style={{ width: "100%", marginTop: "var(--space-4)", opacity: 0.6, cursor: "not-allowed" }}>
+                  Limite Raggiunto
+                </Link>
+              ) : (
+                <Link href="/invoices/new" className="btn btn-outline btn-sm" style={{ width: "100%", marginTop: "var(--space-4)" }}>Nuova fattura</Link>
+              )}
            </div>
         </div>
       </div>

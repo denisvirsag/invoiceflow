@@ -35,6 +35,16 @@ export default async function DashboardPage() {
   });
 
   const now = new Date();
+
+  const isFreePlan = !user?.plan || user.plan === "free";
+  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+  const thisMonthInvoicesCount = await prisma.invoice.count({
+    where: {
+      userId: session.user.id,
+      createdAt: { gte: startOfMonth }
+    }
+  });
+  const isLimitReached = isFreePlan && thisMonthInvoicesCount >= 5;
   const currentMonth = now.getMonth();
   const currentYear = now.getFullYear();
 
@@ -197,13 +207,48 @@ export default async function DashboardPage() {
           <h1 className="page-title">Dashboard</h1>
           <p className="page-subtitle">Benvenuto, {firstName}. Ecco il riepilogo di {currentMonthName} {currentYear}.</p>
         </div>
-        <Link href="/invoices/new" className="btn btn-primary" id="dashboard-new-invoice-btn">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-          Nuova fattura
-        </Link>
+        {isLimitReached ? (
+          <Link href="/settings/billing" className="btn btn-primary" id="dashboard-new-invoice-btn" style={{ opacity: 0.6, cursor: "not-allowed" }}>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            Limite Raggiunto
+          </Link>
+        ) : (
+          <Link href="/invoices/new" className="btn btn-primary" id="dashboard-new-invoice-btn">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            Nuova fattura
+          </Link>
+        )}
       </div>
+
+      {isLimitReached && (
+        <div style={{
+          background: "var(--color-status-overdue-bg)",
+          border: "1px solid var(--color-destructive)",
+          borderRadius: "var(--radius-xl)",
+          padding: "var(--space-5)",
+          marginBottom: "var(--space-6)",
+          display: "flex",
+          flexDirection: "column",
+          gap: "var(--space-2)"
+        }} className="animate-fade-in-up">
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--space-2)", color: "var(--color-destructive)", fontWeight: 700 }}>
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            Limite fatture mensile raggiunto (5/5)
+          </div>
+          <p style={{ fontSize: "var(--text-sm)", color: "var(--color-muted-foreground)", margin: 0 }}>
+            Hai utilizzato tutte le 5 fatture disponibili per questo mese sul piano gratuito. Per creare altre fatture, effettua l'upgrade a un piano superiore.
+          </p>
+          <Link href="/settings/billing" style={{ fontSize: "var(--text-sm)", fontWeight: 600, color: "var(--color-destructive)", textDecoration: "underline", width: "fit-content", marginTop: "var(--space-2)" }}>
+            Gestisci abbonamento &rarr;
+          </Link>
+        </div>
+      )}
 
       {/* KPI Grid */}
       <div className="grid-kpi" style={{ animationDelay: "0.05s" }}>
@@ -387,12 +432,21 @@ export default async function DashboardPage() {
         }}
         className="animate-fade-in-up"
       >
-        <Link href="/invoices/new" className="btn btn-primary" id="dashboard-quick-invoice-btn">
-          <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-          </svg>
-          Crea fattura
-        </Link>
+        {isLimitReached ? (
+          <Link href="/settings/billing" className="btn btn-primary" id="dashboard-quick-invoice-btn" style={{ opacity: 0.6, cursor: "not-allowed" }}>
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            Limite Raggiunto
+          </Link>
+        ) : (
+          <Link href="/invoices/new" className="btn btn-primary" id="dashboard-quick-invoice-btn">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+            Crea fattura
+          </Link>
+        )}
         <Link href="/clients/new" className="btn btn-outline" id="dashboard-quick-client-btn">
           <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
