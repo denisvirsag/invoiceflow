@@ -18,6 +18,19 @@ export async function downloadInvoicePDF(invoiceNumber: string) {
       backgroundColor: "#ffffff",
       windowWidth: 794, // Standard A4 width at 96 DPI
       onclone: (clonedDoc) => {
+        // Reset html and body height to avoid taking 100% of viewport height
+        const htmlEl = clonedDoc.documentElement;
+        const bodyEl = clonedDoc.body;
+        if (htmlEl) {
+          htmlEl.style.height = "auto";
+          htmlEl.style.minHeight = "auto";
+        }
+        if (bodyEl) {
+          bodyEl.style.height = "auto";
+          bodyEl.style.minHeight = "auto";
+          bodyEl.style.background = "#ffffff";
+        }
+
         const clonedEl = clonedDoc.querySelector(".invoice-print-container") as HTMLElement;
         if (clonedEl) {
           // Remove animations that cause blank captures
@@ -48,20 +61,30 @@ export async function downloadInvoicePDF(invoiceNumber: string) {
     
     // Calculate the image height maintaining aspect ratio
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
+    let finalWidth = imgWidth;
+    let finalHeight = imgHeight;
+    let startX = 0;
+
+    // If the content is slightly larger than 1 page (up to 15% overflow), scale it down to fit exactly on 1 page
+    if (imgHeight > pageHeight && imgHeight <= pageHeight * 1.15) {
+      finalHeight = pageHeight;
+      finalWidth = (canvas.width * finalHeight) / canvas.height;
+      startX = (imgWidth - finalWidth) / 2; // Center horizontally
+    }
     
-    let heightLeft = imgHeight;
+    let heightLeft = finalHeight;
     let position = 0;
 
     // First page
-    pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+    pdf.addImage(imgData, "PNG", startX, position, finalWidth, finalHeight);
     heightLeft -= pageHeight;
 
     // Multi-page support (if invoice is long)
-    // Use 10mm tolerance to avoid adding a page for minor spacing/padding overflows
-    while (heightLeft > 10) {
-      position = heightLeft - imgHeight;
+    // Use 15mm tolerance to avoid adding a page for minor spacing/padding overflows
+    while (heightLeft > 15) {
+      position = heightLeft - finalHeight;
       pdf.addPage();
-      pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+      pdf.addImage(imgData, "PNG", startX, position, finalWidth, finalHeight);
       heightLeft -= pageHeight;
     }
 
