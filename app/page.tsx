@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { startDemoAction } from "./demo-actions";
+import LandingNavbar from "@/components/LandingNavbar";
 
 export const metadata: Metadata = {
   title: "InvoiceFlow — Fatture professionali in pochi click",
@@ -20,15 +21,15 @@ const trustItems = [
     text: "Aliquote IVA italiane aggiornate",
     icon: (
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     )
   },
   {
-    text: "PDF pronto per il commercialista",
+    text: "Fatture illimitate (piano Pro)",
     icon: (
       <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
       </svg>
     )
   }
@@ -36,67 +37,62 @@ const trustItems = [
 
 const features = [
   {
-    title: "Wizard in 3 step",
-    desc: "Fattura completa in meno di 2 minuti: intestazione, voci, anteprima e invio guidato.",
+    title: "Creazione Guidata",
+    desc: "Un assistente ti guida passo dopo passo. Niente formule o allineamenti rotti, solo dati puliti.",
     icon: (
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 002-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
       </svg>
-    ),
+    )
   },
   {
-    title: "PDF professionale",
-    desc: "Generato all'istante con il tuo logo personalizzato e i dati aziendali, pronto da spedire così com'è.",
+    title: "Download PDF Istantaneo",
+    desc: "Scarica il PDF della fattura ottimizzato per la stampa o l'invio via email.",
     icon: (
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
       </svg>
-    ),
+    )
   },
   {
-    title: "Dashboard KPI",
-    desc: "Fatturato, incassi e scaduti in un grafico e metriche essenziali che si leggono in tre secondi netti.",
+    title: "Statistiche in tempo reale",
+    desc: "Fatturato mensile, incassato e scaduto calcolati automaticamente senza formule Excel.",
     icon: (
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.003 9.003 0 1020.945 13H11V3.055z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
       </svg>
-    ),
+    )
   },
   {
-    title: "Gestione clienti",
-    desc: "Anagrafica ordinata con storico di tutte le fatture emesse, P.IVA ed email, tutto in un unico posto.",
+    title: "Anagrafica Clienti",
+    desc: "Salva i dati dei tuoi clienti ricorrenti e compila le nuove fatture in un solo click.",
     icon: (
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
-    ),
+    )
   },
   {
-    title: "Invio email",
-    desc: "Manda la fattura al cliente via email con un click tramite server sicuri, senza uscire dalla piattaforma.",
+    title: "Invio Email Automatico",
+    desc: "Invia le fatture direttamente ai clienti dal tuo account. Ricevi una notifica di avvenuto invio.",
     icon: (
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
       </svg>
-    ),
+    )
   },
   {
-    title: "Calcolo IVA automatico",
-    desc: "Aliquote italiane 0%, 4%, 5%, 10%, 22%. Imponibile, imposta e totale sempre corretti in tempo reale.",
+    title: "Gestione Solleciti",
+    desc: "Un cliente ritarda il pagamento? Invia un sollecito formale precompilato in un click.",
     icon: (
       <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
       </svg>
-    ),
-  },
+    )
+  }
 ];
 
 const faqs = [
-  {
-    q: "Devo inserire la carta di credito per il piano gratuito?",
-    a: "No. Il piano Free si attiva senza alcun metodo di pagamento. Puoi passare a Pro o Business quando vuoi, direttamente dalle impostazioni del tuo account."
-  },
   {
     q: "Le fatture generate sono valide dal punto di vista fiscale?",
     a: "Il PDF riporta tutti i dati richiesti: intestazione completa, voci di spesa, aliquote IVA e totali. Ti consigliamo comunque di verificare con il tuo commercialista i requisiti specifici del tuo regime fiscale, inclusa l'eventuale fatturazione elettronica."
@@ -107,7 +103,7 @@ const faqs = [
   },
   {
     q: "Posso cambiare piano o disdire quando voglio?",
-    a: "Certamente. Non ci sono vincoli contrattuali o scadenze nascoste: puoi fare l'upgrade, il downgrade o annullare l'abbonamento mensile direttamente dalle impostazioni del tuo account con un semplice click."
+    a: "Certamente. Non ci sono vincoli contrattuali o scadenze nascoste: puoi fare l'upgrade, il downgrade o annullare l'abbonamento mensile direttamente dalle impostazioni del tuo account con un simple click."
   },
   {
     q: "I miei dati e quelli dei miei clienti sono al sicuro?",
@@ -119,33 +115,7 @@ export default function LandingPage() {
   return (
     <div style={{ backgroundColor: "var(--color-background)", minHeight: "100vh" }}>
       {/* Nav */}
-      <nav className="landing-nav" role="navigation" aria-label="Navigazione principale" style={{
-        position: "sticky", top: 0, zIndex: 100, backdropFilter: "blur(8px)", backgroundColor: "rgba(248, 250, 252, 0.8)", borderBottom: "1px solid var(--color-border)"
-      }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)", flex: 1 }}>
-          <div style={{
-            width: 36, height: 36,
-            background: "var(--color-primary)",
-            borderRadius: "var(--radius-lg)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }} aria-hidden="true">
-            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="white" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-          </div>
-          <span style={{ fontWeight: 800, fontSize: "var(--text-xl)", color: "var(--color-primary)", letterSpacing: "-0.04em" }}>
-            Invoice<span style={{ color: "var(--color-accent)" }}>Flow</span>
-          </span>
-        </div>
-        <div className="landing-nav-links" style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
-          <Link href="#features" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Funzionalità</Link>
-          <Link href="#how-it-works" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Come funziona</Link>
-          <Link href="#pricing" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Prezzi</Link>
-          <Link href="#faq" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>FAQ</Link>
-          <Link href="/login" className="btn btn-outline btn-sm" id="nav-login-btn">Accedi</Link>
-          <Link href="/register" className="btn btn-accent btn-sm" id="nav-register-btn">Inizia gratis</Link>
-        </div>
-      </nav>
+      <LandingNavbar />
 
       {/* Hero */}
       <section className="landing-hero" id="hero" aria-labelledby="hero-heading" style={{
