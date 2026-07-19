@@ -78,7 +78,7 @@ export default async function InvoiceDetailPage({
         aria-label="Dettaglio fattura"
       >
         {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "var(--space-8)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "var(--space-8)", flexWrap: "wrap" }}>
           <div>
             <div style={{ fontWeight: 800, fontSize: "var(--text-2xl)", color: "var(--color-primary)", letterSpacing: "-0.04em" }}>
               Invoice<span style={{ color: "var(--color-accent)" }}>Flow</span>
@@ -137,7 +137,7 @@ export default async function InvoiceDetailPage({
 
         {/* Totals */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <div style={{ minWidth: 240, display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+          <div style={{ minWidth: "auto", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: "var(--text-sm)", color: "var(--color-muted-foreground)" }}>
               <span>Imponibile</span><span>{formatCurrency(invoice.subtotal)}</span>
             </div>

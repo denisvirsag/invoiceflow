@@ -72,7 +72,7 @@ export default async function BillingPage() {
           )}
         </div>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)" }}>
+        <div className="grid-pricing" style={{ display: "grid", gap: "var(--space-4)" }}>
           <div style={{ border: "2px solid var(--color-primary)", borderRadius: "var(--radius-lg)", padding: "var(--space-6)", position: "relative" }}>
             <div style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: "var(--color-primary)", color: "white", padding: "2px 12px", borderRadius: "var(--radius-full)", fontSize: "var(--text-xs)", fontWeight: 700 }}>
               CONSIGLIATO

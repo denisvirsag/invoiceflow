@@ -53,7 +53,7 @@ export default async function SettingsPage() {
         <form action={updateProfile} style={{ display: "flex", flexDirection: "column", gap: "var(--space-6)" }}>
           <div>
             <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-4)" }}>Dati Anagrafici</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)" }}>
+            <div className="form-grid-2col" style={{ display: "grid", gap: "var(--space-4)" }}>
               <div className="form-group" style={{ gridColumn: "1 / -1" }}>
                 <label htmlFor="name" className="form-label required">Nome Completo</label>
                 <input id="name" name="name" type="text" className="form-input" defaultValue={user.name || ""} required />
@@ -69,7 +69,7 @@ export default async function SettingsPage() {
 
           <div>
             <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-4)" }}>Dati Aziendali</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)" }}>
+            <div className="form-grid-2col" style={{ display: "grid", gap: "var(--space-4)" }}>
               <div className="form-group" style={{ gridColumn: "1 / -1" }}>
                 <label htmlFor="companyName" className="form-label">Nome Azienda / Ragione Sociale</label>
                 <input id="companyName" name="companyName" type="text" className="form-input" defaultValue={user.companyName || ""} />

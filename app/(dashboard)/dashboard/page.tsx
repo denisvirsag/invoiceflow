@@ -286,7 +286,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* Charts & Tax Section */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "var(--space-6)", marginTop: "var(--space-8)" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "var(--space-6)", marginTop: "var(--space-8)" }}>
         {/* Monthly trend chart */}
         <div className="card animate-fade-in-up" style={{ animationDelay: "0.15s", display: "flex", flexDirection: "column" }}>
           <div className="card-header">

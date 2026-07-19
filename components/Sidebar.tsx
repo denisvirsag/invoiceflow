@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
+import { useState, useEffect } from "react";
 
 // --- SVG Icons (inline, no emoji) ---
 
@@ -94,6 +95,24 @@ export default function Sidebar({
   currentUser?: { name?: string | null; email?: string | null };
 }) {
   const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
 
   const name = currentUser?.name || "Utente";
   const email = currentUser?.email || "";
@@ -108,8 +127,8 @@ export default function Sidebar({
     signOut({ callbackUrl: "/" });
   };
 
-  return (
-    <aside className="dashboard-sidebar" aria-label="Navigazione principale">
+  const navContent = (
+    <>
       {/* Logo */}
       <div className="sidebar-logo">
         <div className="sidebar-logo-icon" aria-hidden="true">
@@ -138,6 +157,7 @@ export default function Sidebar({
                   href={item.href}
                   className={`sidebar-nav-item${isActive ? " active" : ""}`}
                   aria-current={isActive ? "page" : undefined}
+                  onClick={() => setMobileOpen(false)}
                 >
                   {getIcon(item.icon)}
                   <span>{item.label}</span>
@@ -172,6 +192,55 @@ export default function Sidebar({
           <IconLogout />
         </div>
       </div>
-    </aside>
+    </>
+  );
+
+  return (
+    <>
+      {/* Desktop Sidebar (hidden on mobile via CSS) */}
+      <aside className="dashboard-sidebar" aria-label="Navigazione principale">
+        {navContent}
+      </aside>
+
+      {/* Mobile Top Bar (shown only on mobile via CSS) */}
+      <div className="mobile-topbar">
+        <div className="mobile-topbar-logo">
+          Invoice<span>Flow</span>
+        </div>
+        <button
+          className="mobile-hamburger"
+          onClick={() => setMobileOpen(true)}
+          aria-label="Apri menu di navigazione"
+        >
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Mobile Overlay */}
+      <div
+        className={`mobile-overlay${mobileOpen ? " open" : ""}`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+
+      {/* Mobile Slide-in Sidebar */}
+      <aside
+        className={`mobile-sidebar${mobileOpen ? " open" : ""}`}
+        aria-label="Navigazione mobile"
+      >
+        <button
+          className="mobile-sidebar-close"
+          onClick={() => setMobileOpen(false)}
+          aria-label="Chiudi menu"
+        >
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+        {navContent}
+      </aside>
+    </>
   );
 }

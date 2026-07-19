@@ -26,7 +26,7 @@ export default function NewClientPage() {
           
           <div>
             <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-4)" }}>Dati Principali</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)" }}>
+            <div className="form-grid-2col" style={{ display: "grid", gap: "var(--space-4)" }}>
               <div className="form-group" style={{ gridColumn: "1 / -1" }}>
                 <label htmlFor="name" className="form-label required">Ragione Sociale / Nome e Cognome</label>
                 <input id="name" name="name" type="text" className="form-input" required autoFocus />
@@ -46,7 +46,7 @@ export default function NewClientPage() {
 
           <div>
             <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-4)" }}>Indirizzo</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "var(--space-4)" }}>
+            <div className="form-grid-2col" style={{ display: "grid", gap: "var(--space-4)" }}>
               <div className="form-group" style={{ gridColumn: "1 / -1" }}>
                 <label htmlFor="address" className="form-label">Indirizzo Completo</label>
                 <input id="address" name="address" type="text" className="form-input" placeholder="Via Roma, 1" />

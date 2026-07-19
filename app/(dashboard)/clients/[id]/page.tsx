@@ -57,7 +57,7 @@ export default async function ClientDetailPage({
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 300px", gap: "var(--space-6)" }}>
+      <div className="grid-client-detail" style={{ display: "grid", gap: "var(--space-6)" }}>
         {/* Left Col: Form for Editing */}
         <div className="card animate-fade-in-up" style={{ animationDelay: "0.05s" }}>
            <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-4)" }}>Dati Anagrafici</h3>

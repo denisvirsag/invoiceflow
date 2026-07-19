@@ -1,4 +1,4 @@
-Write code by default without explanations; only explain or describe the code when the user explicitly asks for an explanation.
+
 
 <!-- BEGIN:nextjs-agent-rules -->
 # This is NOT the Next.js you know
@@ -6,7 +6,6 @@ Write code by default without explanations; only explain or describe the code wh
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 <!-- END:nextjs-agent-rules -->
 
-@system-prompt.md
 
 <!-- BEGIN: ui-ux-rule -->
 For frontend/UI/UX requests, ALWAYS activate `ui-ux-pro-max` skill.

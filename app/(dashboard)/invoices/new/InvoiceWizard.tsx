@@ -224,7 +224,7 @@ function Step2({
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "var(--space-8)" }}>
       <div className="table-wrapper">
-        <table className="table" aria-label="Editor voci fattura">
+        <table className="table wizard-table-mobile" aria-label="Editor voci fattura">
           <thead>
             <tr>
               <th scope="col" style={{ width: "40%" }}>Descrizione</th>
@@ -238,7 +238,7 @@ function Step2({
           <tbody>
             {items.map((item, idx) => (
               <tr key={item.id}>
-                <td>
+                <td data-label="Descrizione">
                   <input
                     type="text"
                     className="form-input"
@@ -248,7 +248,7 @@ function Step2({
                     aria-label={`Descrizione voce ${idx + 1}`}
                   />
                 </td>
-                <td>
+                <td data-label="Quantità">
                   <input
                     type="number"
                     className="form-input"
@@ -267,7 +267,7 @@ function Step2({
                     aria-label={`Quantità voce ${idx + 1}`}
                   />
                 </td>
-                <td>
+                <td data-label="Prezzo unit.">
                   <input
                     type="number"
                     className="form-input"
@@ -292,7 +292,7 @@ function Step2({
                     aria-label={`Prezzo voce ${idx + 1}`}
                   />
                 </td>
-                <td>
+                <td data-label="IVA">
                   <select
                     className="form-input"
                     value={item.vat}
@@ -304,10 +304,10 @@ function Step2({
                     ))}
                   </select>
                 </td>
-                <td className="invoice-amount" style={{ textAlign: "right" }}>
+                <td data-label="Totale" className="invoice-amount" style={{ textAlign: "right" }}>
                   {formatCurrency(item.qty * item.price * (1 + item.vat / 100))}
                 </td>
-                <td>
+                <td data-label="Azioni">
                   <button
                     type="button"
                     className="btn btn-ghost btn-icon"
@@ -344,7 +344,7 @@ function Step2({
           background: "var(--color-muted)",
           borderRadius: "var(--radius-xl)",
           padding: "var(--space-5) var(--space-6)",
-          minWidth: 280,
+          minWidth: "auto",
           display: "flex",
           flexDirection: "column",
           gap: "var(--space-3)",
@@ -446,7 +446,7 @@ function Step3({ data, client }: { data: FormData, client?: Client }) {
         aria-label="Anteprima fattura"
       >
         {/* Header */}
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "var(--space-8)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "var(--space-8)", flexWrap: "wrap", gap: "var(--space-4)" }}>
           <div>
             <div style={{ fontWeight: 800, fontSize: "var(--text-2xl)", color: "var(--color-primary)", letterSpacing: "-0.04em" }}>
               Invoice<span style={{ color: "var(--color-accent)" }}>Flow</span>
@@ -502,7 +502,7 @@ function Step3({ data, client }: { data: FormData, client?: Client }) {
 
         {/* Totals */}
         <div style={{ display: "flex", justifyContent: "flex-end" }}>
-          <div style={{ minWidth: 240, display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
+          <div style={{ minWidth: "auto", display: "flex", flexDirection: "column", gap: "var(--space-2)" }}>
             <div style={{ display: "flex", justifyContent: "space-between", fontSize: "var(--text-sm)", color: "var(--color-muted-foreground)" }}>
               <span>Imponibile</span><span>{formatCurrency(subtotal)}</span>
             </div>

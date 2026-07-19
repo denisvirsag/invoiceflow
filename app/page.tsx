@@ -137,7 +137,7 @@ export default function LandingPage() {
             Invoice<span style={{ color: "var(--color-accent)" }}>Flow</span>
           </span>
         </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
+        <div className="landing-nav-links" style={{ display: "flex", alignItems: "center", gap: "var(--space-3)" }}>
           <Link href="#features" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Funzionalità</Link>
           <Link href="#how-it-works" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Come funziona</Link>
           <Link href="#pricing" className="btn btn-ghost" style={{ fontSize: "var(--text-sm)" }}>Prezzi</Link>
@@ -221,7 +221,7 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "var(--space-6)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "var(--space-6)" }}>
             <div className="card" style={{ padding: "var(--space-6)", display: "flex", flexDirection: "column", border: "1px solid var(--color-border)" }}>
               <div style={{ fontSize: "var(--text-sm)", fontWeight: 800, color: "var(--color-accent)", marginBottom: "var(--space-3)" }}>
                 01 — Intestazione
@@ -270,7 +270,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "var(--space-6)" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "var(--space-6)" }}>
             {features.map((f) => (
               <div key={f.title} className="card feature-card" style={{ padding: "var(--space-6)", border: "1px solid var(--color-border)" }}>
                 <div style={{
@@ -290,7 +290,7 @@ export default function LandingPage() {
       {/* Dashboard Section */}
       <section id="dashboard" aria-labelledby="dashboard-heading" style={{ padding: "var(--space-20) var(--space-6)", backgroundColor: "#ffffff" }}>
         <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "var(--space-12)", alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "var(--space-12)", alignItems: "center" }}>
             {/* Copy side */}
             <div>
               <span style={{ color: "var(--color-accent)", fontSize: "var(--text-sm)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: "var(--space-2)" }}>
@@ -391,7 +391,7 @@ export default function LandingPage() {
             </p>
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))", gap: "var(--space-6)", alignItems: "stretch" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "var(--space-6)", alignItems: "stretch" }}>
             {/* Free */}
             <div className="card" style={{ display: "flex", flexDirection: "column", border: "1px solid var(--color-border)", padding: "var(--space-8)" }}>
               <div style={{ fontSize: "var(--text-sm)", color: "var(--color-muted-foreground)", marginBottom: "var(--space-2)" }}>Per iniziare</div>
