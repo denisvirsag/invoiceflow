@@ -155,6 +155,7 @@ export default function Sidebar({
                 <Link
                   key={item.href}
                   href={item.href}
+                  prefetch={true}
                   className={`sidebar-nav-item${isActive ? " active" : ""}`}
                   aria-current={isActive ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
