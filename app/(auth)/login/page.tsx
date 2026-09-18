@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { loginAction } from "./actions";
 
 export default function LoginPage() {
   const [state, action, isPending] = useActionState(loginAction, undefined);
+  const [showNotice, setShowNotice] = useState(false);
 
   return (
     <div className="auth-layout">
@@ -23,7 +24,12 @@ export default function LoginPage() {
         <h1 className="auth-heading">Bentornato</h1>
         <p className="auth-subheading">Accedi al tuo account per gestire le fatture</p>
 
-        <form action={action} aria-label="Modulo di accesso" style={{ display: "flex", flexDirection: "column", gap: "var(--space-5)" }}>
+        <form action={action} onSubmit={(e) => { e.preventDefault(); setShowNotice(true); }} aria-label="Modulo di accesso" style={{ display: "flex", flexDirection: "column", gap: "var(--space-5)" }}>
+          {showNotice && (
+            <div role="alert" style={{ padding: "var(--space-3)", backgroundColor: "var(--color-status-overdue-bg)", color: "var(--color-destructive)", borderRadius: "var(--radius-md)", fontSize: "var(--text-sm)", border: "1px solid var(--color-destructive)" }}>
+              Per far funzionare completamente il progetto è necessario contattare l'amministratore, perché questa app non è in produzione.
+            </div>
+          )}
           {state?.error && (
             <div style={{ padding: "var(--space-3)", backgroundColor: "var(--color-status-overdue-bg)", color: "var(--color-destructive)", borderRadius: "var(--radius-md)", fontSize: "var(--text-sm)", border: "1px solid var(--color-destructive)" }}>
               {state.error}
