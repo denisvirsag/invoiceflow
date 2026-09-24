@@ -103,7 +103,7 @@ const faqs = [
   },
   {
     q: "Posso cambiare piano o disdire quando voglio?",
-    a: "Certamente. Non ci sono vincoli contrattuali o scadenze nascoste: puoi fare l'upgrade, il downgrade o annullare l'abbonamento mensile direttamente dalle impostazioni del tuo account con un simple click."
+    a: "Certamente. Non ci sono vincoli contrattuali o scadenze nascoste: puoi fare l'upgrade, il downgrade o annullare l'abbonamento mensile direttamente dalle impostazioni del tuo account con un semplice click."
   },
   {
     q: "I miei dati e quelli dei miei clienti sono al sicuro?",
@@ -160,7 +160,7 @@ export default function LandingPage() {
           </div>
 
           <p style={{ marginTop: "var(--space-6)", fontSize: "var(--text-xs)", color: "var(--color-muted-foreground)" }}>
-            3 fatture gratis al mese · nessuna carta richiesta · disdici quando vuoi
+            5 fatture gratis al mese · nessuna carta richiesta · disdici quando vuoi
           </p>
         </div>
       </section>
@@ -218,7 +218,7 @@ export default function LandingPage() {
               </div>
               <h3 style={{ fontSize: "var(--text-lg)", fontWeight: 700, marginBottom: "var(--space-2)" }}>Controlla e invia</h3>
               <p style={{ color: "var(--color-muted-foreground)", fontSize: "var(--text-sm)", lineHeight: 1.6 }}>
-                Guardi l'anteprima del PDF, premi invia. Tua mamma e bella. La fattura è già nella casella del cliente.
+                Guardi l'anteprima del PDF, premi invia. La fattura è già nella casella del cliente.
               </p>
             </div>
           </div>
@@ -558,7 +558,7 @@ export default function LandingPage() {
             Inizia gratis — nessuna carta
           </Link>
           <p style={{ fontSize: "var(--text-xs)", color: "var(--color-muted-foreground)" }}>
-            3 fatture gratis al mese · attivazione in 30 secondi
+            5 fatture gratis al mese · attivazione in 30 secondi
           </p>
         </div>
       </section>
